@@ -1,0 +1,39 @@
+version: 2
+
+jobs:
+  build:
+    environment:
+      - DOCKER_IMAGE_NAME: crontab
+    working_directory: /tmp/image
+    docker:
+      - image: zeromic/docker:latest
+    steps:
+      - setup_remote_docker
+
+      - checkout
+
+      - run:
+          name: Install bash
+          command: apk --no-progress update && apk --no-progress add bash
+
+      - run:
+          name: Publish build image
+          command: ./create_docker.sh
+
+workflows:
+  version: 2
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 19 * * *"
+          filters:
+            branches:
+              only:
+                - latest
+    jobs:
+      - build:
+          context: docker
+  build:
+    jobs:
+      - build:
+          context: docker
