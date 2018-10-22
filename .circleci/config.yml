@@ -17,7 +17,7 @@ jobs:
           command: apk --no-progress update && apk --no-progress add bash
 
       - run:
-          name: Publish build image
+          name: Publish crontab image
           command: ./create_docker.sh
 
 workflows:
