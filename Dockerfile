@@ -5,6 +5,7 @@ FROM alpine:latest
 RUN apk --no-cache update && \
     apk --no-cache add --update \
       curl \
+      bash \
       ca-certificates && \
     rm -rf /var/cache/apk/*
 
