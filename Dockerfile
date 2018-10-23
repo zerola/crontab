@@ -6,6 +6,7 @@ RUN apk --no-cache update && \
     apk --no-cache add --update \
       curl \
       bash \
+      tzdata \
       ca-certificates && \
     rm -rf /var/cache/apk/*
 
