@@ -7,7 +7,8 @@ RUN apk --no-cache update && \
       curl \
       bash \
       tzdata \
-      ca-certificates && \
+      ca-certificates \
+      openssl && \
     rm -rf /var/cache/apk/*
 
 COPY --from=ofelia /usr/bin/ofelia /usr/bin/ofelia
